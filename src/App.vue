@@ -16,9 +16,8 @@
               <h3 class="text-h3">Try Ribbon's all new features</h3>
 
               <p class="mt-4 text-medium-emphasis">
-                Our all-in-one platform gives you the banking, accounting,
-                fundraising, and organizational tools you need to build a
-                successful charity under the umbrella of your fiscal sponsor.
+                Our all-in-one platform gives you the banking, accounting, fundraising, and organizational tools you
+                need to build a successful charity under the umbrella of your fiscal sponsor.
               </p>
             </v-responsive>
           </v-container>
@@ -71,31 +70,14 @@
                 <v-responsive width="350">
                   <h2 class="text-h4">Show your support feature</h2>
                   <p class="text-success mt-3">Available now!</p>
-                  <p class="mt-3">
-                    Easily send messages to those that have given!
-                  </p>
+                  <p class="mt-3">Easily send messages to those that have given!</p>
                 </v-responsive>
               </v-col>
               <v-sheet width="400" class="mx-auto">
-                <v-form
-                  v-model="valid"
-                  validate-on="submit"
-                  @submit.prevent="submit"
-                >
-                  <v-textarea
-                    v-model="message"
-                    :rules="messageRules"
-                    label="Message"
-                  ></v-textarea>
-                  <v-text-field
-                    v-model="email"
-                    :rules="emailRules"
-                    label="Email"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="donor_id"
-                    label="Donor Id"
-                  ></v-text-field>
+                <v-form v-model="valid" validate-on="submit" @submit.prevent="submit">
+                  <v-textarea v-model="message" :rules="messageRules" label="Message"></v-textarea>
+                  <v-text-field v-model="email" :rules="emailRules" label="Email"></v-text-field>
+                  <v-text-field v-model="donor_id" label="Donor Id"></v-text-field>
                   <v-btn type="submit" block class="mt-2">Send</v-btn>
                 </v-form>
               </v-sheet>
@@ -106,9 +88,7 @@
     </v-main>
 
     <v-footer>
-      <v-container
-        class="text-overline d-flex align-center justify-space-between"
-      >
+      <v-container class="text-overline d-flex align-center justify-space-between">
         <div>Copyright &copy; 2023 Flourish Change Inc dba Ribbon</div>
 
         <v-icon icon="mdi-bank" size="x-large" />
@@ -118,37 +98,35 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 export default {
-  name: "App",
+  name: 'App',
 
   data() {
     return {
       donors: null,
       valid: false,
-      email: "",
-      donor_id: "",
-      message: "",
+      email: '',
+      donor_id: '',
+      message: '',
       emailRules: [
         (value) => {
           if (value) return true;
 
-          return "E-mail is required.";
+          return 'E-mail is required.';
         },
       ],
       messageRules: [
         (value) => {
           if (value) return true;
 
-          return "Message is required.";
+          return 'Message is required.';
         },
       ],
     };
   },
   mounted() {
-    axios
-      .get("https://interview.ribbon.giving/api/donors")
-      .then((response) => (this.donors = response.data));
+    axios.get('https://interview.ribbon.giving/api/donors').then((response) => (this.donors = response.data));
   },
   methods: {
     async submit() {
