@@ -38,24 +38,7 @@
             </v-row>
             <v-row>
               <v-col>
-                <table v-if="donors">
-                  <thead>
-                    <tr>
-                      <th class="text-left">Name</th>
-                      <th class="text-left">Email</th>
-                      <th class="text-left">Total Donations</th>
-                      <th class="text-left">First Donation</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="item in donors.data" :key="item.id">
-                      <td>{{ item.full_name }}</td>
-                      <td>{{ item.email }}</td>
-                      <td>{{ item.total_donations }}</td>
-                      <td>{{ item.first_donation }}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <DonorListTable />
               </v-col>
             </v-row>
           </v-container>
@@ -96,15 +79,13 @@
     </v-footer>
   </v-app>
 </template>
-
 <script>
-import axios from 'axios';
+import DonorListTable from './components/DonorListTable';
 export default {
   name: 'App',
 
   data() {
     return {
-      donors: null,
       valid: false,
       email: '',
       donor_id: '',
@@ -125,13 +106,13 @@ export default {
       ],
     };
   },
-  mounted() {
-    axios.get('https://interview.ribbon.giving/api/donors').then((response) => (this.donors = response.data));
-  },
   methods: {
     async submit() {
       // Send message to server.
     },
+  },
+  components: {
+    DonorListTable,
   },
 };
 </script>
